@@ -1,0 +1,37 @@
+.sectionContainer {
+    min-height: 300px;
+}
+
+.sectionHeader {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.sectionHeader h1 {
+    color: white;
+    display: inline;
+    position: relative;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+}
+
+.sectionHeader h1::before {
+    content: "";
+    position: absolute;
+    top: calc(100% + 7px);
+    width: calc(100% + 20px);
+    left: -10px;
+    height: 5px;
+    background: linear-gradient(111.3deg, #1c7fb8 10%, #e2231a 90%);
+    text-align: center;
+    justify-content: center;
+}
+
+.sectionHeader h3 {
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 1px 1px 2px black;
+    margin-top: 23px;
+    color: white;
+}

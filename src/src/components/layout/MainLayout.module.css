@@ -1,0 +1,20 @@
+.main {
+    min-width: 320px;
+    background-color: #14213f;
+}
+
+.headerSpacer {
+    height: 180px;
+}
+
+@media (max-width: 991px) {
+    .headerSpacer {
+        height: 150px;
+    }
+}
+
+@media (max-width: 414px) {
+    .headerSpacer {
+        height: 125px;
+    }
+}
