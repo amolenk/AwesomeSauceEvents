@@ -9,7 +9,7 @@ $secondary: #e2231a;
 $tertiary: #14213f;
 $info: #2ea3d6;
 
-$headings-font-family: 'Agdasima', sans-serif;
+$headings-font-family: var(--font-agdasima), sans-serif;
 
 @import "../../node_modules/.pnpm/bootstrap@5.3.8_@popperjs+core@2.11.8/node_modules/bootstrap/scss/bootstrap";
 @import "../../public/bootstrap-icons/bootstrap-icons.min.css";

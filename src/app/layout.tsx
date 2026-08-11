@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Agdasima } from "next/font/google";
 import '@/app/(default)/global.scss';
 
+const agdasima = Agdasima({
+  subsets: ["latin"],
+  variable: "--font-agdasima",
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://bitbash.azurewebsites.net"),
   title: "Awesome Sauce Events",
   description: "Register for Awesome Sauce Events.",
   openGraph: {
@@ -32,18 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        {/* Google Fonts */}
-        <link
-          href="https://fonts.googleapis.com/css?family=Agdasima:400,700"
-          rel="stylesheet"
-        />
-        <link
-          href="https://fonts.googleapis.com/css?family=Montserrat:600"
-          rel="stylesheet"
-        />
-      </head>
-      <body>
+      <body className={agdasima.variable}>
         {children}
       </body>
     </html>

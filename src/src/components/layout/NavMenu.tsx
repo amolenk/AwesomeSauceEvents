@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./NavMenu.module.css";
 
 export default function NavMenu() {
@@ -20,7 +21,7 @@ export default function NavMenu() {
       className={`${styles.header} d-flex align-items-center justify-content-center ${isScrolled ? styles.headerScrolled : ''}`}
     >
       <div className={styles.logo}>
-        <img src="/img/logo.png" alt="Awesome Sauce Events" title="Awesome Sauce Events" />
+        <Image src="/img/logo.png" alt="Awesome Sauce Events" title="Awesome Sauce Events" width={112} height={138} priority />
       </div>
     </header>
   );
