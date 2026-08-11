@@ -15,34 +15,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'
-
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 10
 
-      - name: Install and build
-        run: |
-          cd src-react
-          pnpm install --frozen-lockfile
-          pnpm build
-          ls -la .next
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+          cache-dependency-path: src/pnpm-lock.yaml
 
-      # Create a clean deploy folder with only what the app needs at runtime
+      - name: Install and build
+        working-directory: src
+        env:
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://awesomesauce.admitto.org' }}
+        run: pnpm install --frozen-lockfile && pnpm build
+
       - name: Create deploy bundle
         run: |
           mkdir deploy
-          cp -r src-react/.next deploy/.next
-          cp -r src-react/public deploy/public
-          cp src-react/package.json deploy/package.json
-          cp src-react/pnpm-lock.yaml deploy/pnpm-lock.yaml
-          cp src-react/server.js deploy/server.js
-          cp src-react/web.config deploy/web.config
-          ls -la deploy
+          cp -R src/.next/standalone/. deploy/
+          cp -R src/public deploy/public
+          mkdir -p deploy/.next/static
+          cp -R src/.next/static/. deploy/.next/static/
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -74,5 +71,5 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'bitbash'
+          app-name: 'awesomesauce'
           package: .
